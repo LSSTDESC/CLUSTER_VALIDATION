@@ -1,7 +1,7 @@
 # cluster_validation
 
 
-The aim of CLUSTER_VALIDATION is to provide the framework for the validation of DESc cluster finder on simulated data (SRM tasks : Cluster Finder Validation - CLFinder DC2 VA -). It is part of the DESC project : 
+The aim of CLUSTER DETECTION VALIDATION is to provide the framework for the validation of DESc cluster finder on simulated data (SRM tasks : Cluster Finder Validation - CLFinder DC2 VA -). It is part of the DESC project : 
 - DC2 Project: Running redMaPPer on DC2 Cosmo and Sim Catalogs (https://confluence.slac.stanford.edu/display/LSSTDESC/DC2+Project%3A+Running+redMaPPer+on+DC2+Cosmo+and+Sim+Catalogs)  
 
 In this repo you wil find tools to investigate the properties of detected galaxy clusters with respect to the true halos (e.g. redMaPPer cosmo-DC2 detections wrt cosmo DC2 halos). The association methods developped can also be used to match two different mock catalogs. 
