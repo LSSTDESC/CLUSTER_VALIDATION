@@ -1,4 +1,4 @@
-# cluster_validation
+# CLUSTER DETECTION VALIDATION
 
 
 The aim of CLUSTER DETECTION VALIDATION is to provide the framework for the validation of DESc cluster finder on simulated data (SRM tasks : Cluster Finder Validation - CLFinder DC2 VA -). It is part of the DESC project : 
