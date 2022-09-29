@@ -120,6 +120,7 @@ def plot_mass_richness(halo_data, cluster_data, ind_bij, zmin = 0, zmax = np.inf
         
     return fig, ax
 
+
 #####################################################
 #functions to add richness-mass relations from litterature
 #####################################################
@@ -127,7 +128,8 @@ def plot_mass_richness(halo_data, cluster_data, ind_bij, zmin = 0, zmax = np.inf
 #____________________________________________________
 #parametrization of the mass richness relation 
 
-def mass_richness_parametrization(l, z, F, G, Omega_m_z0, M0, l0, z0, mass_def="crit"):
+
+def mass_richness_parametrization(l, z, Omega_m_z0, M0, l0, z0, F, G, mass_def="crit"):
     """Parametrization of the mass-richness-redshift relation used in several DES papers """
     if mass_def == "mean":
         M = M0
@@ -153,7 +155,9 @@ def M_DES_SV(l, z, Omega_m_z0):
     z0 = 0.5
     F = 1.12
     G = 0.18   
-    return mass_richness_parametrization(l_new, z,  F, G, Omega_m_z0, M0, l0, z0,mass_def="crit")
+
+    return mass_richness_parametrization(l_new, z, Omega_m_z0, M0, l0, z0, F, G, mass_def="crit")
+
 
 #------------------------------
 def M_SDSS(l, z, Omega_m_z0):
@@ -165,7 +169,8 @@ def M_SDSS(l, z, Omega_m_z0):
     l0 = 40.
     z0 = 0.2
     F = 1.30   #+- 0.09
-    return mass_richness_parametrization(l_new, z,  F, 0, Omega_m_z0, M0, l0, z0,  mass_def="crit")
+
+    return mass_richness_parametrization(l_new, z, Omega_m_z0, M0, l0, z0, F, 0, mass_def="crit")
 
 #------------------------------
 def M_DES_Y1(l, z, Omega_m_z0):
@@ -177,7 +182,9 @@ def M_DES_Y1(l, z, Omega_m_z0):
     z0 = 0.35
     F = 1.356   #+-0.051 +-0.008
     G = -0.30   #+-0.30 +-0.06
-    return mass_richness_parametrization(l, z,  F, G, Omega_m_z0, M0, l0, z0, mass_def="crit")
+
+    return mass_richness_parametrization(l, z, Omega_m_z0, M0, l0, z0, F, G, mass_def="crit")
+
 
 #------------------------------
 def M_DES_Y1_lim(l, z, lim, Omega_m_z0):

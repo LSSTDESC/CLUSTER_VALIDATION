@@ -14,6 +14,7 @@ from astropy.table import Table
 #function to open, read and select info in DC2 and redmapper catalogs
 #####################################################
 
+
 def RM_DC2_cat_open(RM_cat_name, DC2_cat_name, min_richness=20, min_halo_mass=1e14, redshift_max = 1.3, cluster_only=True, mag_query=None, RM_only=False):
 
     # Get the redMaPPer catalog
@@ -44,3 +45,4 @@ def RM_DC2_cat_open(RM_cat_name, DC2_cat_name, min_richness=20, min_halo_mass=1e
         truth_data = Table(gc_truth.get_quantities(quantities_wanted, [query]))
     
         return cluster_data, member_data, truth_data, gc, gc_truth
+

@@ -12,6 +12,7 @@ from astropy.cosmology import FlatLambdaCDM
 #####################################################
 
 #_____________________________________________________
+
 def radius_cut(richness_0, dist, cond=None):
     if cond is None:
         cond = np.ones(dist.size, dtype=bool)
@@ -33,6 +34,7 @@ def radius_cut(richness_0, dist, cond=None):
         return richness_i, r_richness_scaled(richness)
 
 #_____________________________________________________
+
 def r_scaled(mass, z, delta_ovd, cosmo, density_type="critical"):
     """mass in Msun, z = redshift, delta_ovd = critical overdensity, cosmo = astropy object, density_type = 'critical' or 'mean', default to 'critical'"""
     
@@ -207,8 +209,9 @@ def select_one_association(cat_ref, number_of_volume_match, list_of_volume_match
     if method=='nearest':
         angular_distances_of_associations = get_angular_distances(cat_ref, list_of_volume_match, coo_ref, coo_cat)
     elif method=='membership':   
+
         membership_of_associations, membership_fraction_of_associations = get_membership(cat_ref, cat, list_of_volume_match, truth_member_data, cluster_member_data, association_way)
-    
+
     for i in range(len(cat_ref)): 
                      
         if number_of_volume_match[i]==1:
@@ -351,6 +354,17 @@ def membership_match(truth_data, cluster_data, membership_fraction, cosmo, truth
 
     if (truth_member_data is None or cluster_member_data is None):
         print ("error: with membership method you should provide member catlogs, see function documentation")
+
+    ###compute searching distances-------------------------------------------------------------
+    theta_max = search_distance(truth_data, cluster_data,r_max, r_max_type, cosmo, "1w", delta_ovd=delta_ovd)
+
+    ###search and store volume candidate------------------------------------------------------
+    number_of_volume_match_1w, list_of_volume_match_1w = \
+    volume_associations(truth_data, cluster_data, theta_max, delta_zmax, "1w", coo_DC2, coo_RM)
+    
+    ###select only one match---------------------------------------------------------------------
+    ind_DC2_match_1w, ind_RM_match_1w = \
+    select_one_association(truth_data, number_of_volume_match_1w, list_of_volume_match_1w, method, coo_DC2, coo_RM, cluster_data, truth_member_data, cluster_member_data, "1w")
         
     ###load DC2 and RM clusters coordinates
     coo_DC2 = SkyCoord(truth_data['ra']*u.deg,truth_data['dec']*u.deg)
@@ -396,6 +410,22 @@ def membership_match(truth_data, cluster_data, membership_fraction, cosmo, truth
     ###select only one match---------------------------------------------------------------------
     ind_RM_match_2w, ind_DC2_match_2w = \
     select_one_association(cluster_data, number_of_membership_match_2w, list_of_membership_match_2w, "membership", coo_RM, coo_DC2, truth_data, truth_member_data, cluster_member_data, "2w")
+
+    ########################################################################################       
+    #bijective associations
+
+    #one way association : RM => DC2 (2w)
+
+    ###compute searching distances-------------------------------------------------------------
+    theta_max = search_distance(truth_data, cluster_data,r_max, r_max_type, cosmo, "2w")
+    
+    ###search and store volume candidate------------------------------------------------------
+    number_of_volume_match_2w, list_of_volume_match_2w = \
+    volume_associations(truth_data, cluster_data, theta_max, delta_zmax, "2w", coo_DC2, coo_RM)
+    
+    ###select only one match---------------------------------------------------------------------
+    ind_RM_match_2w, ind_DC2_match_2w = \
+    select_one_association(cluster_data, number_of_volume_match_2w, list_of_volume_match_2w, method, coo_RM, coo_DC2, truth_data, truth_member_data, cluster_member_data, "2w")
 
     ########################################################################################       
     #bijective associations
