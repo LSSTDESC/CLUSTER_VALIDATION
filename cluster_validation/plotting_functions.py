@@ -135,14 +135,27 @@ def mass_richness_parametrization(l, z, Omega_m_z0, M0, l0, z0, F, G, mass_def="
         M = M0
     elif mass_def == "crit":
         M = M0 * Omega_m_z0*(1.+z)**3
-    elif mass_def == "FoF":
-        M = M0 * Omega_m_z0*(1.+z)**3 / 0.92
+#    elif mass_def == "FoF":
+#        M = M0 * Omega_m_z0*(1.+z)**3 / 0.92
         
     return M*(l/l0)**F*((1+z)/(1+z0))**G
 
 #____________________________________________________
 #parameters of mass richness relations from litterature
-#adapted from https://github.com/LSSTDESC/DC2-analysis/blob/u/shenmingfu/cosmoDC2-cluster-mass-richness/contributed/cosmoDC2-cluster-mass-richness.ipynb
+#partly adapted from https://github.com/LSSTDESC/DC2-analysis/blob/u/shenmingfu/cosmoDC2-cluster-mass-richness/contributed/cosmoDC2-cluster-mass-richness.ipynb
+
+#------------------------------
+def M_Saro(l, z, Omega_m_z0):
+    """Mass richness parameters from McClintock et al. (2018) [https://arxiv.org/pdf/1805.00039.pdf]"""
+    
+    M0 = 2.754e14   #(+-0.075 +-0.133)e14
+    # log10(M0) = 14.489 #+-0.011 +-0.019
+    l0 = 40.
+    z0 = 0.35
+    F = 0.91   #+-0.051 +-0.008
+    G = 0   #+-0.30 +-0.06
+    return mass_richness_parametrization(l, z,  F, G, Omega_m_z0, M0, l0, z0, mass_def="FoF")
+
 
 #------------------------------
 def M_DES_SV(l, z, Omega_m_z0):
