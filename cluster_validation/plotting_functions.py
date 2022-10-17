@@ -154,7 +154,7 @@ def M_Saro(l, z, Omega_m_z0):
     z0 = 0.35
     F = 0.91   #+-0.051 +-0.008
     G = 0   #+-0.30 +-0.06
-    return mass_richness_parametrization(l, z,  F, G, Omega_m_z0, M0, l0, z0, mass_def="FoF")
+    return mass_richness_parametrization(l, z, Omega_m_z0, M0, l0, z0, F, G, mass_def="crit")
 
 
 #------------------------------
