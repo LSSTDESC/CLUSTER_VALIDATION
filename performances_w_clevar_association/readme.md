@@ -11,5 +11,5 @@
 - unmacthed cases
 - completeness
 - purity 
-- redshift recovery
+- redshift recovery : `redmapper_redshift_recovery.ipynb`
 - centering efficiency
