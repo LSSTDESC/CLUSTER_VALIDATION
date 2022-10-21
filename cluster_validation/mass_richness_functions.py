@@ -182,3 +182,11 @@ def M_DES_Y1_lim(l, z, lim, Omega_m_z0):
     else: 
         print("Error: Limit string should be \'min\' or \'max\'.")
         return arr
+
+    
+def MOR_from_sample(flat_sample, z0=0.4):
+    xval = np.logspace(np.log10(5), np.log10(200))
+    mor_mean = 10**(mu_logM_lambda(z0, np.log10(xval), flat_sample[:,0].mean(), flat_sample[:,1].mean(), flat_sample[:,2].mean()))
+    mor_samples = np.vstack([10**(mu_logM_lambda(z0, np.log10(xval[i]), flat_sample[:,0], flat_sample[:,1], flat_sample[:,2])) for i in range(xval.size)])
+    
+return mor_mean, mor_samples
