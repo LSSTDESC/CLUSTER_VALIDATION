@@ -9,11 +9,38 @@ import matplotlib.pyplot as plt
 #####################################################
 #functions to produce association validation plots
 #####################################################
+#____________________________________________________
+#function to compute runnin stats
+def running_stats(quant_x, quant_y, xmin=0, xmax=1.2, xstep=0.05):
+    
+    nbin = int((xmax-xmin)/(xstep*2))
+    bins_a = np.linspace(xmin, xmax, nbin+1)
+    bins_b = np.linspace(xmin+xstep, xmax+xstep, nbin+1)
+    #print(bins_a,  bins_b)
+    inds_a = np.digitize(quant_x, bins_a)
+    inds_b = np.digitize(quant_x, bins_b) 
+    
+    quant_x_mean =  np.zeros((nbin*2))
+    quant_y_mean, quant_y_std = np.zeros((2,nbin*2))
+    for i in range(nbin):
+        #print(i)
+        
+        quant_x_mean[0::2][i] = np.nanmean(quant_x[inds_a==(i+1)])
+        quant_x_mean[1::2][i] = np.nanmean(quant_x[inds_b==(i+1)])
+        #print(np.mean(quant_x[inds_a==(i+1)]))
+        
+        quant_y_mean[0::2][i] = np.nanmean(quant_y[inds_a==(i+1)])
+        quant_y_mean[1::2][i] = np.nanmean(quant_y[inds_b==(i+1)])
+        
+        quant_y_std[0::2][i] = np.nanstd(quant_y[inds_a==(i+1)])
+        quant_y_std[1::2][i] = np.nanstd(quant_y[inds_b==(i+1)])
+        
+    return quant_x_mean, quant_y_mean, quant_y_std 
 
 #____________________________________________________
 #detection vs true redshift plots
 
-def plot_redshift_comparison(truth_data, cluster_data, ind_bij):
+def plot_redshift_comparison_inhouse(truth_data, cluster_data, ind_bij):
     """ind1, ind2 = ind_truth_data, ind_cluster_data"""
     
     plt.subplot(2,1,1)
