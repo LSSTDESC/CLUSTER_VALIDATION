@@ -7,8 +7,8 @@ import yaml
 from scipy import stats
 from scipy.optimize import minimize
 
-from sigma_z.data_loader import DataLoader, GCRDataLoader
-from sigma_z.lambda_model import LambdaModel
+from data_loader import DataLoader, GCRDataLoader
+from lambda_model import LambdaModel
 
 
 class SigmaZ(ABC):

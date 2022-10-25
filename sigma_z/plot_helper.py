@@ -149,11 +149,6 @@ class PlotHelper(object):
         Helper method to plot the average sigma_z as a function of z_bin, will also plot other existing sigma_z curves next to it.
         """
         digitized_plots = {
-            "des_y3": {
-                "Label": "DES Y3",
-                "Path": "digitized_plots/des_y3.csv",
-                "Color": "m",
-            },
             "des_y1": {
                 "Label": "DES Y1",
                 "Path": "digitized_plots/des_y1.csv",
