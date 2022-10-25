@@ -193,31 +193,6 @@ class SigmaZ(ABC):
         pass
 
 
-class DESY3SigmaZ(SigmaZ):
-    def __init__(self, config_file_path, data_model, z_start, z_end, z_steps):
-        super().__init__(config_file_path, data_model, z_start, z_end, z_steps)
-
-    def get_data(self):
-        zscan_config = self.config["zscan_catalog"]
-        truth_config = self.config["truth_catalog"]
-
-        loader = DataLoader.from_gcr(zscan_config["filenm"])
-        values_nm = [
-            zscan_config["cluster_id"],
-            zscan_config["richness_steps"],
-            truth_config["redshift"],
-            truth_config["richness"],
-        ]
-        values = loader.get_values(values_nm)
-
-        return {
-            "id_cluster": values[zscan_config["cluster_id"]],
-            "lambda_arrays": values[zscan_config["richness_steps"]],
-            "z_in": values[truth_config["redshift"]],
-            "lambda_in": values[truth_config["richness"]],
-        }
-
-
 class DC2SigmaZ(SigmaZ):
     def __init__(self, config_file_path, data_model, z_start, z_end, z_steps):
 
