@@ -1,0 +1,12 @@
+---
+zscan_catalog:
+    filenm: "chto_y3_gold_2.2.1_wide_sofcol_run2_lz_run_runpos.fit"
+    cluster_id: "MEM_MATCH_ID"
+    richness_steps: "LAMBDA_CHISQ"
+    
+truth_catalog: 
+    filenm: "chto_y3_gold_2.2.1_wide_sofcol_run2_lz_run_runpos.fit"
+    cluster_id: "MEM_MATCH_ID"
+    redshift: "Z_LAMBDA_IN"
+    richness: "LAMBDA_IN"
+...
