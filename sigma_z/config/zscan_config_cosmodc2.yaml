@@ -1,0 +1,12 @@
+---
+zscan_catalog:
+    filenm: "/global/homes/m/mkwiecie/desc/sims/cosmodc2/zscan/cosmoDC2_v1.1.4_mag_run_redmapper_v0.8.1_redmapper_v0.8.1_zscan_catalog.fit"
+    cluster_id: "mem_match_id"
+    richness_steps: "lambda_steps"
+    
+truth_catalog: 
+    filenm: "cosmoDC2_v1.1.4_redmapper_v0.8.1"
+    cluster_id: "cluster_id"
+    redshift: "redshift"
+    richness: "richness"
+...
