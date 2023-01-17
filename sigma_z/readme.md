@@ -1,5 +1,5 @@
 
-**Code written by Matt Kwiecien**
+**Code written by Matt Kwiecien and Matteo Costanzi**
 
 This directory contains the code and data necessary to generate a plot that compares the sigma-z distribution for cosmoDC2 and DC2 to DES Y1 and buzzard sims.
 
